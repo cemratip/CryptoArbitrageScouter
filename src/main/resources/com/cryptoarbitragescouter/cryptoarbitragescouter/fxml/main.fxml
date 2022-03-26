@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane fx:id="stackpane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cryptoarbitragescouter.cryptoarbitragescouter.main">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0">
+         <top>
+            <BorderPane prefHeight="125.0" prefWidth="1200.0" style="-fx-background-color: #303030;" BorderPane.alignment="CENTER">
+               <left>
+                  <ImageView fitHeight="112.0" fitWidth="648.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="30.0" />
+                     </BorderPane.margin>
+                     <image>
+                        <Image url="@../images/name icon.png" />
+                     </image>
+                  </ImageView>
+               </left>
+               <right>
+                  <Button alignment="CENTER" contentDisplay="CENTER" minHeight="125.0" minWidth="175.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="175.0" style="-fx-background-color: #303030;" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                     <font>
+                        <Font size="96.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="120.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/profile icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </right>
+            </BorderPane>
+         </top>
+         <bottom>
+            <HBox prefHeight="125.0" prefWidth="1200.0" style="-fx-background-color: #808080;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="75.0" prefWidth="170.0" style="-fx-background-color: #303030; -fx-background-radius: 25;" text="Import" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Ubuntu Bold" size="32.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="380.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="970.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="75.0" prefWidth="170.0" style="-fx-background-color: #303030; -fx-background-radius: 25;" text="Export" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Ubuntu Bold" size="32.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <HBox style="-fx-background-color: #808080;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#createNewAlert" opacity="0.4" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #808080; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #303030; -fx-border-width: 10;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="85.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/add icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="75.0" top="62.5" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>
