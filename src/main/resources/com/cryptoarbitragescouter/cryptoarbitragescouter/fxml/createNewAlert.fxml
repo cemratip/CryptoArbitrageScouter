@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="createNewAlertPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cryptoarbitragescouter.cryptoarbitragescouter.createNewAlert">
    <center>
-      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
-         <content>
-            <Pane prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;" />
-         </content>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </ScrollPane>
+      <StackPane fx:id="createNewAlertPopup" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="blank" onMouseClicked="#returnToMain" opacity="0.85" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #303030;" />
+            <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: transparent;">
+               <content>
+                  <Pane prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;" />
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
    </center>
 </BorderPane>

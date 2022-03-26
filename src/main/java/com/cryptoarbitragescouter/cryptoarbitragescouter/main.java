@@ -5,10 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -22,8 +25,7 @@ public class main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        URL url = getClass().getResource("fxml/main.fxml");
-        Pane root = FXMLLoader.load(url);
+        Pane root = FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Crypto Arbitrage Scouter");
         stage.setScene(scene);
@@ -32,8 +34,7 @@ public class main extends Application {
 
     @FXML
     public void createNewAlert() throws IOException {
-        URL url = getClass().getResource("fxml/createNewAlert.fxml");
-        Pane createNewAlertPane = FXMLLoader.load(url);
+        Pane createNewAlertPane = FXMLLoader.load(getClass().getResource("fxml/createNewAlert.fxml"));
         stackpane.getChildren().add(createNewAlertPane);
     }
 
