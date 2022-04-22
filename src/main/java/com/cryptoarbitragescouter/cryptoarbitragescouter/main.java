@@ -1,30 +1,26 @@
 package com.cryptoarbitragescouter.cryptoarbitragescouter;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.awt.*;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class main extends Application {
 
@@ -40,6 +36,7 @@ public class main extends Application {
     private Label invalidPairLabel;
 
     JSONArray pairs = null;
+    JSONArray exchangesObj = null;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -52,7 +49,7 @@ public class main extends Application {
 
     @FXML
     public void showPairPage() {
-        initialisePairs();
+        getPairs();
         bufferPage.setVisible(true);
         pairPage.setVisible(true);
         pairInput.clear();
@@ -62,9 +59,13 @@ public class main extends Application {
     public void showExchangePage() {
         if (pairExists()){
             exchangePage.setVisible(true);
+            getExchanges();
+        }
+        else if (pairInput.getText().equals("")) {
+            invalidPairLabel.setText("Select a pair");
         }
         else {
-            invalidPairLabel.setVisible(true);
+            invalidPairLabel.setText("⚠ Invalid pair");
         }
     }
 
@@ -75,7 +76,7 @@ public class main extends Application {
         exchangePage.setVisible(false);
     }
 
-    private void initialisePairs() {
+    private void getPairs() {
         JSONParser jsonParser = new JSONParser();
         try (FileReader reader = new FileReader("/Users/MrCem/Desktop/app/allFilteredPairs.json")) {
             Object obj = jsonParser.parse(reader);
@@ -86,6 +87,35 @@ public class main extends Application {
         TextFields.bindAutoCompletion(pairInput, pairs);
     }
 
+    private void getExchanges() {
+        JSONParser jsonParser = new JSONParser();
+        ArrayList<Object> exchanges = new ArrayList<>();
+        try (FileReader reader = new FileReader("/Users/MrCem/Desktop/app/pairs1.json")) {
+            Object obj = jsonParser.parse(reader);
+            exchangesObj = (JSONArray) obj;
+            exchangesObj.toArray();
+            int numberOfExchanges = 0;
+            for (int i = 0; i < exchangesObj.size(); i++) {
+                JSONArray element = (JSONArray) exchangesObj.get(i);
+                if (element.get(1).equals(pairInput.getText())) {
+                    exchanges.add(element.get(0));
+                    numberOfExchanges++;
+                }
+            }
+            HashSet<String> set = new HashSet<String>();
+            for (Object exchange : exchanges) {
+                set.add((String) exchange);
+            }
+            showExchanges(set);
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showExchanges(HashSet set) {
+        System.out.println(set);
+    }
+
     private boolean pairExists() {
         String pair = pairInput.getText().toUpperCase();
         System.out.println(pair);
@@ -93,7 +123,7 @@ public class main extends Application {
     }
 
     public void hideInvalidPairLabel(){
-        invalidPairLabel.setVisible(false);
+        invalidPairLabel.setText("");
     }
 
     public static void main(String[] args) {
