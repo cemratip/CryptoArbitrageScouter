@@ -3,11 +3,16 @@ package com.cryptoarbitragescouter.cryptoarbitragescouter;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 import org.json.simple.JSONArray;
@@ -34,6 +39,8 @@ public class main extends Application {
     private TextField pairInput;
     @FXML
     private Label invalidPairLabel;
+    @FXML
+    private VBox exchangeList;
 
     JSONArray pairs = null;
     JSONArray exchangesObj = null;
@@ -94,12 +101,10 @@ public class main extends Application {
             Object obj = jsonParser.parse(reader);
             exchangesObj = (JSONArray) obj;
             exchangesObj.toArray();
-            int numberOfExchanges = 0;
             for (int i = 0; i < exchangesObj.size(); i++) {
                 JSONArray element = (JSONArray) exchangesObj.get(i);
-                if (element.get(1).equals(pairInput.getText())) {
+                if (element.get(1).equals(pairInput.getText().toUpperCase())) {
                     exchanges.add(element.get(0));
-                    numberOfExchanges++;
                 }
             }
             HashSet<String> set = new HashSet<String>();
@@ -114,6 +119,11 @@ public class main extends Application {
 
     private void showExchanges(HashSet set) {
         System.out.println(set);
+        for (Object exchange : set) {
+            HBox box = new HBox(new Label((String) exchange), new CheckBox(""));
+            box.setAlignment(Pos.BASELINE_CENTER);
+            exchangeList.getChildren().add(box);
+        }
     }
 
     private boolean pairExists() {

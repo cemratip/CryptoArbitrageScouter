@@ -17,7 +17,7 @@
                         <Insets left="30.0" />
                      </BorderPane.margin>
                      <image>
-                        <Image url="@../images/name icon.png" />
+                        <Image url="@../../../../../../../target/classes/com/cryptoarbitragescouter/cryptoarbitragescouter/images/name icon.png" />
                      </image>
                   </ImageView>
                </left>
@@ -32,7 +32,7 @@
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/profile icon.png" />
+                              <Image url="@../../../../../../../target/classes/com/cryptoarbitragescouter/cryptoarbitragescouter/images/profile icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -69,7 +69,7 @@
                      <graphic>
                         <ImageView fitHeight="85.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/add icon.png" />
+                              <Image url="@../../../../../../../target/classes/com/cryptoarbitragescouter/cryptoarbitragescouter/images/add%20icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -103,7 +103,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <TextField fx:id="pairInput" onInputMethodTextChanged="#hideInvalidPairLabel" onKeyTyped="#hideInvalidPairLabel" promptText="e.g. BTC/USDT" />
-                              <Label fx:id="invalidPairLabel" text="⚠ Invalid pair" textFill="RED" visible="false" />
+                              <Label fx:id="invalidPairLabel" textFill="RED" />
                            </children>
                         </VBox>
                      </children></HBox>
@@ -113,6 +113,38 @@
                </bottom></BorderPane>
          </children>
       </StackPane>
-      <StackPane fx:id="exchangePage" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;" visible="false" />
+      <StackPane fx:id="exchangePage" layoutX="390.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;" visible="false">
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label text="Create New Alert" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="30.0" />
+                     </font>
+                  </Label>
+               </top>
+               <center>
+                  <VBox>
+                     <children>
+                        <Label text="Exchanges" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" text="Select All" />
+                        <ScrollPane style="-fx-background-color: #303030;">
+                           <content>
+                              <VBox fx:id="exchangeList" prefHeight="438.0" prefWidth="283.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </center>
+               <bottom>
+                  <Button mnemonicParsing="false" onMouseClicked="#returnToMain" text="Next" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </children>
+      </StackPane>
    </children>
 </StackPane>
