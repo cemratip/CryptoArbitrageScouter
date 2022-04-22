@@ -17,7 +17,7 @@
                         <Insets left="30.0" />
                      </BorderPane.margin>
                      <image>
-                        <Image url="@../../../../../../../target/classes/com/cryptoarbitragescouter/cryptoarbitragescouter/images/name icon.png" />
+                        <Image url="@../images/name icon.png" />
                      </image>
                   </ImageView>
                </left>
@@ -32,7 +32,7 @@
                      <graphic>
                         <ImageView fitHeight="120.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../target/classes/com/cryptoarbitragescouter/cryptoarbitragescouter/images/profile icon.png" />
+                              <Image url="@../images/profile icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -69,7 +69,7 @@
                      <graphic>
                         <ImageView fitHeight="85.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../target/classes/com/cryptoarbitragescouter/cryptoarbitragescouter/images/add%20icon.png" />
+                              <Image url="@../images/add icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
