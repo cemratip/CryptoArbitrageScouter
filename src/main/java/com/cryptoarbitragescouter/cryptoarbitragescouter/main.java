@@ -40,27 +40,21 @@ public class main extends Application {
     }
 
     @FXML
-    public void createBufferPage() throws IOException {
-        Pane bufferPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/bufferPage.fxml")));
-        mainPage.getChildren().add(bufferPage);
-        createPairPage();
+    public void showPairPage() throws IOException {
+        bufferPage.setVisible(true);
+        pairPage.setVisible(true);
     }
 
     @FXML
-    public void createPairPage() throws IOException {
-        Pane pairPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/pairPage.fxml")));
-        bufferPage.getChildren().add(pairPage);
-    }
-
-    @FXML
-    public void createExchangePage() throws IOException {
-        Pane exchangePage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/exchangePage.fxml")));
-        pairPage.getChildren().add(exchangePage);
+    public void showExchangePage() throws IOException {
+        exchangePage.setVisible(true);
     }
 
     @FXML
     public void returnToMain() {
-        ((Pane) bufferPage.getParent()).getChildren().removeAll();
+        bufferPage.setVisible(false);
+        pairPage.setVisible(false);
+        exchangePage.setVisible(false);
     }
 
     public static void main(String[] args) {

@@ -65,7 +65,7 @@
          <center>
             <HBox style="-fx-background-color: #808080;" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#createBufferPage" opacity="0.4" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #808080; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #303030; -fx-border-width: 10;" textAlignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#showPairPage" opacity="0.4" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #808080; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #303030; -fx-border-width: 10;" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="85.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -81,5 +81,36 @@
             </HBox>
          </center>
       </BorderPane>
+      <StackPane fx:id="bufferPage" onMouseClicked="#returnToMain" opacity="0.5" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #303030;" visible="false" />
+      <StackPane fx:id="pairPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;" visible="false">
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label text="Create New Alert" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="30.0" />
+                     </font></Label>
+               </top>
+               <bottom>
+                  <Button mnemonicParsing="false" onAction="#showExchangePage" text="Button" BorderPane.alignment="CENTER" />
+               </bottom>
+               <center>
+                  <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Pair" textFill="WHITE">
+                           <font>
+                              <Font name="Microsoft Sans Serif" size="24.0" />
+                           </font></Label>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <TextField />
+                              <Label text="Label" />
+                           </children>
+                        </VBox>
+                     </children></HBox>
+               </center>
+            </BorderPane>
+         </children></StackPane>
+      <StackPane fx:id="exchangePage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #ffffff;" visible="false" />
    </children>
 </StackPane>
