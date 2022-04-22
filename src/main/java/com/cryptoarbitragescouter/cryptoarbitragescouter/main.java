@@ -8,13 +8,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.awt.*;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -22,13 +29,17 @@ import java.util.Objects;
 public class main extends Application {
 
     @FXML
-    private StackPane mainPage;
-    @FXML
     private StackPane bufferPage;
     @FXML
     private StackPane pairPage;
     @FXML
     private StackPane exchangePage;
+    @FXML
+    private TextField pairInput;
+    @FXML
+    private Label invalidPairLabel;
+
+    JSONArray pairs = null;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -40,27 +51,49 @@ public class main extends Application {
     }
 
     @FXML
-    public void createBufferPage() throws IOException {
-        Pane bufferPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/bufferPage.fxml")));
-        mainPage.getChildren().add(bufferPage);
-        createPairPage();
+    public void showPairPage() {
+        initialisePairs();
+        bufferPage.setVisible(true);
+        pairPage.setVisible(true);
+        pairInput.clear();
     }
 
     @FXML
-    public void createPairPage() throws IOException {
-        Pane pairPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/pairPage.fxml")));
-        bufferPage.getChildren().add(pairPage);
-    }
-
-    @FXML
-    public void createExchangePage() throws IOException {
-        Pane exchangePage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/exchangePage.fxml")));
-        pairPage.getChildren().add(exchangePage);
+    public void showExchangePage() {
+        if (pairExists()){
+            exchangePage.setVisible(true);
+        }
+        else {
+            invalidPairLabel.setVisible(true);
+        }
     }
 
     @FXML
     public void returnToMain() {
-        ((Pane) bufferPage.getParent()).getChildren().removeAll();
+        bufferPage.setVisible(false);
+        pairPage.setVisible(false);
+        exchangePage.setVisible(false);
+    }
+
+    private void initialisePairs() {
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader("/Users/MrCem/Desktop/app/allFilteredPairs.json")) {
+            Object obj = jsonParser.parse(reader);
+            pairs = (JSONArray) obj;
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        TextFields.bindAutoCompletion(pairInput, pairs);
+    }
+
+    private boolean pairExists() {
+        String pair = pairInput.getText().toUpperCase();
+        System.out.println(pair);
+        return pairs.contains(pair);
+    }
+
+    public void hideInvalidPairLabel(){
+        invalidPairLabel.setVisible(false);
     }
 
     public static void main(String[] args) {

@@ -53,7 +53,7 @@ public class pairPage extends main{
 
     public void goToExchangeSelectionPage() throws IOException {
         if (pairExists()){
-            createExchangePage();
+            showExchangePage();
         }
         else {
             invalidPairLabel.setVisible(true);
