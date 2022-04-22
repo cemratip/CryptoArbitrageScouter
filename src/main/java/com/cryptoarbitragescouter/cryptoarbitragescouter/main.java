@@ -17,25 +17,50 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 public class main extends Application {
 
     @FXML
-    private StackPane stackpane;
+    private StackPane mainPage;
+    @FXML
+    private StackPane bufferPage;
+    @FXML
+    private StackPane pairPage;
+    @FXML
+    private StackPane exchangePage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        Pane root = FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
+        Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/main.fxml")));
         Scene scene = new Scene(root);
-        stage.setTitle("Crypto Arbitrage Scouter");
+        stage.setTitle("Crypto Arbitrage Monitor");
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    public void createNewAlert() throws IOException {
-        Pane createNewAlertPane = FXMLLoader.load(getClass().getResource("fxml/createNewAlert.fxml"));
-        stackpane.getChildren().add(createNewAlertPane);
+    public void createBufferPage() throws IOException {
+        Pane bufferPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/bufferPage.fxml")));
+        mainPage.getChildren().add(bufferPage);
+        createPairPage();
+    }
+
+    @FXML
+    public void createPairPage() throws IOException {
+        Pane pairPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/pairPage.fxml")));
+        bufferPage.getChildren().add(pairPage);
+    }
+
+    @FXML
+    public void createExchangePage() throws IOException {
+        Pane exchangePage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/exchangePage.fxml")));
+        pairPage.getChildren().add(exchangePage);
+    }
+
+    @FXML
+    public void returnToMain() {
+        ((Pane) bufferPage.getParent()).getChildren().removeAll();
     }
 
     public static void main(String[] args) {

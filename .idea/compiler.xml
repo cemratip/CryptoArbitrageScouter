@@ -13,4 +13,9 @@
       <module name="CryptoArbitrageScouter" target="11" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CryptoArbitrageScouter" options="--add-exports org.controlsfx.controls/org.controlsfx=com.cryptoarbitragescouter.cryptoarbitragescouter" />
+    </option>
+  </component>
 </project>

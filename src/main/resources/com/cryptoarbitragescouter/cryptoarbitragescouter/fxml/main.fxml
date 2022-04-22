@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane fx:id="stackpane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cryptoarbitragescouter.cryptoarbitragescouter.main">
+<StackPane fx:id="mainPage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cryptoarbitragescouter.cryptoarbitragescouter.main">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0">
          <top>
@@ -65,7 +65,7 @@
          <center>
             <HBox style="-fx-background-color: #808080;" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#createNewAlert" opacity="0.4" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #808080; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #303030; -fx-border-width: 10;" textAlignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#createBufferPage" opacity="0.4" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #808080; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #303030; -fx-border-width: 10;" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="85.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                            <image>
