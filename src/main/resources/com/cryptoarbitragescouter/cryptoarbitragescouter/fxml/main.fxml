@@ -131,10 +131,15 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Select All" />
+                        <Button fx:id="selectAllBtn" mnemonicParsing="false" onMouseClicked="#selectAllExchanges" text="Select All" />
                         <ScrollPane style="-fx-background-color: #303030;">
                            <content>
-                              <VBox fx:id="exchangeList" prefHeight="438.0" prefWidth="283.0" />
+                              <HBox>
+                                 <children>
+                                    <VBox fx:id="exchangeListLeft" prefHeight="438.0" prefWidth="228.0" />
+                                    <VBox fx:id="exchangeListRight" prefHeight="438.0" prefWidth="201.0" />
+                                 </children>
+                              </HBox>
                            </content>
                         </ScrollPane>
                      </children>

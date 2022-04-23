@@ -20,6 +20,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.awt.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,10 +41,15 @@ public class main extends Application {
     @FXML
     private Label invalidPairLabel;
     @FXML
-    private VBox exchangeList;
+    private VBox exchangeListLeft;
+    @FXML
+    private VBox exchangeListRight;
+    @FXML
+    private Button selectAllBtn;
 
     JSONArray pairs = null;
     JSONArray exchangesObj = null;
+    ArrayList<CheckBox> exchangeCheckboxes = new ArrayList<CheckBox>();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -69,7 +75,7 @@ public class main extends Application {
             getExchanges();
         }
         else if (pairInput.getText().equals("")) {
-            invalidPairLabel.setText("Select a pair");
+            invalidPairLabel.setText("⚠ Select a pair");
         }
         else {
             invalidPairLabel.setText("⚠ Invalid pair");
@@ -118,11 +124,36 @@ public class main extends Application {
     }
 
     private void showExchanges(HashSet set) {
-        System.out.println(set);
+        double numberOfExchanges = set.size();
+        int numberOfExchangesInLeftColumn = (int) Math.ceil(numberOfExchanges/2);
+        int count=1;
         for (Object exchange : set) {
-            HBox box = new HBox(new Label((String) exchange), new CheckBox(""));
-            box.setAlignment(Pos.BASELINE_CENTER);
-            exchangeList.getChildren().add(box);
+            CheckBox checkbox = new CheckBox("");
+            exchangeCheckboxes.add(checkbox);
+            HBox box = new HBox(new Label((String) exchange), checkbox);
+            box.setAlignment(Pos.BASELINE_LEFT);
+            if (count <= numberOfExchangesInLeftColumn) {
+                exchangeListLeft.getChildren().add(box);
+            }
+            else {
+                exchangeListRight.getChildren().add(box);
+            }
+            count++;
+        }
+    }
+
+    public void selectAllExchanges() {
+        if (selectAllBtn.getText().equals("Select All")) {
+            for (CheckBox checkbox : exchangeCheckboxes) {
+                checkbox.setSelected(true);
+            }
+            selectAllBtn.setText("Deselect All");
+        }
+        else {
+            for (CheckBox checkbox : exchangeCheckboxes) {
+                checkbox.setSelected(false);
+            }
+            selectAllBtn.setText("Select All");
         }
     }
 
