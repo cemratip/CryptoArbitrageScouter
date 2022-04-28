@@ -95,25 +95,49 @@
                <center>
                   <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label text="Pair" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox prefHeight="439.0" prefWidth="440.0">
                            <children>
-                              <TextField fx:id="pairInput" onInputMethodTextChanged="#hideInvalidPairLabel" onKeyTyped="#hideInvalidPairLabel" promptText="e.g. BTC/USDT" />
-                              <Label fx:id="invalidPairLabel" textFill="RED" />
+                              <HBox prefHeight="53.0" prefWidth="438.0">
+                                 <children>
+                                    <Label text="Pair" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="pairInput" onInputMethodTextChanged="#doAction" onKeyTyped="#doAction" prefHeight="25.0" prefWidth="112.0" promptText="e.g. BTC/USDT" />
+                                 </children>
+                              </HBox>
+                              <VBox fx:id="exchangePanel" prefHeight="397.0" prefWidth="441.0" visible="false">
+                                 <children>
+                                    <Label text="Exchanges" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="selectAllBtn" mnemonicParsing="false" onMouseClicked="#selectAllExchanges" text="Select All" />
+                                    <ScrollPane hbarPolicy="NEVER" prefHeight="363.0" prefWidth="440.0" style="-fx-background: #303030; -fx-background-color: #303030;">
+                                       <content>
+                                          <HBox prefHeight="363.0" prefWidth="429.0">
+                                             <children>
+                                                <VBox fx:id="exchangeListLeft" prefHeight="363.0" prefWidth="228.0" />
+                                                <VBox fx:id="exchangeListRight" prefHeight="363.0" prefWidth="201.0" />
+                                             </children>
+                                          </HBox>
+                                       </content>
+                                    </ScrollPane>
+                                    <Label fx:id="invalidNumberOfExchangesLabel" text="  ⚠ Select 2 or more exchanges" textFill="RED" visible="false" />
+                                 </children>
+                              </VBox>
                            </children>
                         </VBox>
                      </children></HBox>
                </center>
                <bottom>
-                  <Button mnemonicParsing="false" onMouseClicked="#showExchangePage" text="Next" BorderPane.alignment="CENTER" />
+                  <Button mnemonicParsing="false" onMouseClicked="#showPricePage" text="Next" BorderPane.alignment="CENTER" />
                </bottom></BorderPane>
          </children>
       </StackPane>
-      <StackPane fx:id="exchangePage" layoutX="390.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;" visible="false">
+      <StackPane fx:id="pricePage" layoutX="390.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;">
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <top>
@@ -124,29 +148,128 @@
                   </Label>
                </top>
                <center>
-                  <VBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label text="Exchanges" textFill="WHITE">
+                        <Label text="Price Discrepancy" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Button fx:id="selectAllBtn" mnemonicParsing="false" onMouseClicked="#selectAllExchanges" text="Select All" />
-                        <ScrollPane style="-fx-background-color: #303030;">
-                           <content>
-                              <HBox>
+                        <VBox>
+                           <children>
+                              <VBox>
                                  <children>
-                                    <VBox fx:id="exchangeListLeft" prefHeight="438.0" prefWidth="228.0" />
-                                    <VBox fx:id="exchangeListRight" prefHeight="438.0" prefWidth="201.0" />
+                                    <TextField fx:id="priceInput" onInputMethodTextChanged="#hideInvalidPriceLabel" onKeyPressed="#hideInvalidPriceLabel" onKeyTyped="#hideInvalidPriceLabel" prefHeight="26.0" prefWidth="80.0" />
                                  </children>
-                              </HBox>
-                           </content>
-                        </ScrollPane>
+                              </VBox>
+                              <Label fx:id="invalidPriceInputLabel" textFill="RED">
+                                 <font>
+                                    <Font name="Microsoft Sans Serif" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <ComboBox fx:id="discCombobox" onMouseClicked="#hideInvalidPriceLabel" prefHeight="26.0" prefWidth="136.0" promptText="Select interval" />
+                     </children>
+                  </HBox>
+               </center>
+               <bottom>
+                  <HBox BorderPane.alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#hideAlertsPage" text="Back" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#showAlertsPage" text="Next" />
+                     </children>
+                  </HBox>
+               </bottom>
+            </BorderPane>
+         </children>
+      </StackPane>
+      <StackPane fx:id="alertsPage" layoutX="390.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;" visible="false">
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label text="Create New Alert" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="30.0" />
+                     </font>
+                  </Label>
+               </top>
+               <center>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="440.0">
+                           <children>
+                              <Label text="Desktop Notification" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="30.0" text="CheckBox">
+                                 <HBox.margin>
+                                    <Insets top="6.0" />
+                                 </HBox.margin></CheckBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="30.0" prefWidth="440.0">
+                           <children>
+                              <Label text="Notification Sound" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="soundsCombobox" prefWidth="150.0" promptText="Select a sound" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="440.0">
+                           <children>
+                              <Label text="Text Notification" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox mnemonicParsing="false" text="CheckBox" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="40.0" prefHeight="30.0" prefWidth="440.0">
+                           <children>
+                              <Label text="Email Notification" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox mnemonicParsing="false" text="CheckBox" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="70.0" prefHeight="30.0" prefWidth="440.0">
+                           <children>
+                              <Label text="Just Once" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox mnemonicParsing="false" text="CheckBox" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="440.0">
+                           <children>
+                              <Label text="Execute Code" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox mnemonicParsing="false" text="CheckBox" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </center>
                <bottom>
-                  <Button mnemonicParsing="false" onMouseClicked="#returnToMain" text="Next" BorderPane.alignment="CENTER" />
+                  <HBox BorderPane.alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#showPricePage" text="Back" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#showAlertsPage" text="Next" />
+                     </children>
+                  </HBox>
                </bottom>
             </BorderPane>
          </children>

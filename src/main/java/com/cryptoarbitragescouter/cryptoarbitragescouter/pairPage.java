@@ -51,9 +51,9 @@ public class pairPage extends main{
         invalidPairLabel.setVisible(false);
     }
 
-    public void goToExchangeSelectionPage() throws IOException {
+    public void goToExchangeSelectionPanel() throws IOException {
         if (pairExists()){
-            showExchangePage();
+            showExchangePanel();
         }
         else {
             invalidPairLabel.setVisible(true);
