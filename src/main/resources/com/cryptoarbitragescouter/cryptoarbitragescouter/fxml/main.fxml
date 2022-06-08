@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane fx:id="mainPage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cryptoarbitragescouter.cryptoarbitragescouter.main">
+<StackPane fx:id="mainPage" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cryptoarbitragescouter.cryptoarbitragescouter.main">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0">
          <top>
@@ -17,12 +17,12 @@
                         <Insets left="30.0" />
                      </BorderPane.margin>
                      <image>
-                        <Image url="@../images/name icon.png" />
+                        <Image url="@../images/name%20icon.png" />
                      </image>
                   </ImageView>
                </left>
                <right>
-                  <Button alignment="CENTER" contentDisplay="CENTER" minHeight="125.0" minWidth="175.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="175.0" style="-fx-background-color: #303030;" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" minHeight="125.0" minWidth="175.0" mnemonicParsing="false" onMouseClicked="#showSettings" prefHeight="125.0" prefWidth="175.0" style="-fx-background-color: #303030;" textAlignment="CENTER" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>
@@ -30,7 +30,7 @@
                         <Font size="96.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="120.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="120.0" fitWidth="100.0" onMouseClicked="#showSettings" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/profile icon.png" />
                            </image>
@@ -41,46 +41,113 @@
             </BorderPane>
          </top>
          <bottom>
-            <HBox prefHeight="125.0" prefWidth="1200.0" style="-fx-background-color: #808080;" BorderPane.alignment="CENTER">
-               <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="75.0" prefWidth="170.0" style="-fx-background-color: #303030; -fx-background-radius: 25;" text="Import" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Ubuntu Bold" size="32.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="380.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="970.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="75.0" prefWidth="170.0" style="-fx-background-color: #303030; -fx-background-radius: 25;" text="Export" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Ubuntu Bold" size="32.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="100.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
+            <BorderPane prefHeight="133.0" prefWidth="1200.0" style="-fx-background-color: #808080;">
+               <top>
+                  <Button mnemonicParsing="false" onAction="#createAlert" prefHeight="40.0" prefWidth="125.0" text="Create New Alert" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin></Button>
+               </top>
+               <center>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="92.5" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Page  ">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="pageNumbers" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="44.0" />
+                     </children>
+                  </HBox>
+               </center>
+            </BorderPane>
          </bottom>
          <center>
-            <HBox style="-fx-background-color: #808080;" BorderPane.alignment="CENTER">
-               <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#showPairPage" opacity="0.4" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #808080; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #303030; -fx-border-width: 10;" textAlignment="CENTER">
-                     <graphic>
-                        <ImageView fitHeight="85.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/add icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="75.0" top="62.5" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #808080;" BorderPane.alignment="CENTER">
+               <left>
+                  <Button fx:id="previousPageBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#previousPage" prefHeight="50.0" prefWidth="70.0" text="&lt;" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="10.0" />
+                     </BorderPane.margin></Button>
+               </left>
+               <right>
+                  <Button fx:id="nextPageBtn" mnemonicParsing="false" onMouseClicked="#nextPage" prefHeight="50.0" prefWidth="70.0" text="&gt;" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets right="10.0" />
+                     </BorderPane.margin></Button>
+               </right>
+               <center>
+                  <StackPane fx:id="pagesStack" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
          </center>
       </BorderPane>
+      <StackPane fx:id="settingsPage" visible="false">
+         <children>
+            <StackPane fx:id="settingsBufferPage" onMouseClicked="#showSettings" opacity="0.5" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #303030;" visible="false" />
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0">
+               <top>
+                  <BorderPane prefHeight="125.0" prefWidth="1200.0" style="-fx-background-color: #303030;" BorderPane.alignment="CENTER">
+                     <left>
+                        <ImageView fitHeight="112.0" fitWidth="648.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets left="30.0" />
+                           </BorderPane.margin>
+                           <image>
+                              <Image url="@../images/name icon.png" />
+                           </image>
+                        </ImageView>
+                     </left>
+                     <right>
+                        <Button alignment="CENTER" contentDisplay="CENTER" minHeight="123.0" minWidth="175.0" mnemonicParsing="false" onMouseClicked="#showSettings" prefHeight="123.0" prefWidth="175.0" style="-fx-background-color: #303030;" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                           <font>
+                              <Font size="96.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="125.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/profile icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </right>
+                  </BorderPane>
+               </top>
+               <center>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #808080;" BorderPane.alignment="CENTER">
+                     <center>
+                        <HBox BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Phone number" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="140.0">
+                                 <children>
+                                    <TextArea fx:id="phoneNumberDisplay" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="130.0" text="07869736936" />
+                                    <Hyperlink onMouseClicked="#showChangePasswordPage" text="Change Phone Number" textFill="#303030" underline="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </center>
+                  </BorderPane>
+               </center>
+               <bottom>
+                  <Button mnemonicParsing="false" onMouseClicked="#returnToMain" text="Close" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+            <StackPane fx:id="changePasswordPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #303030;" visible="false">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" />
+               </children></StackPane>
+         </children>
+      </StackPane>
       <StackPane fx:id="bufferPage" onMouseClicked="#returnToMain" opacity="0.5" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #303030;" visible="false" />
       <StackPane fx:id="pairPage" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;" visible="false">
          <children>
@@ -104,7 +171,7 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="pairInput" onInputMethodTextChanged="#doAction" onKeyTyped="#doAction" prefHeight="25.0" prefWidth="112.0" promptText="e.g. BTC/USDT" />
+                                    <TextField fx:id="pairInput" onInputMethodTextChanged="#onPairInputChange" onKeyTyped="#onPairInputChange" prefHeight="25.0" prefWidth="112.0" promptText="e.g. BTC/USDT" />
                                  </children>
                               </HBox>
                               <VBox fx:id="exchangePanel" prefHeight="397.0" prefWidth="441.0" visible="false">
@@ -125,9 +192,9 @@
                                           </HBox>
                                        </content>
                                     </ScrollPane>
-                                    <Label fx:id="invalidNumberOfExchangesLabel" text="  ⚠ Select 2 or more exchanges" textFill="RED" visible="false" />
                                  </children>
                               </VBox>
+                              <Label fx:id="pairPageErrorLabel" prefHeight="17.0" prefWidth="279.0" textFill="RED" />
                            </children>
                         </VBox>
                      </children></HBox>
@@ -137,7 +204,7 @@
                </bottom></BorderPane>
          </children>
       </StackPane>
-      <StackPane fx:id="pricePage" layoutX="390.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;">
+      <StackPane fx:id="pricePage" layoutX="390.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="440.0" style="-fx-background-color: #303030;" visible="false">
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <top>
@@ -204,7 +271,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="30.0" text="CheckBox">
+                              <CheckBox fx:id="desktopNotifCheckbox" mnemonicParsing="false" prefHeight="18.0" prefWidth="30.0" text="CheckBox">
                                  <HBox.margin>
                                     <Insets top="6.0" />
                                  </HBox.margin></CheckBox>
@@ -222,12 +289,12 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="440.0">
                            <children>
-                              <Label text="Text Notification" textFill="WHITE">
+                              <Label fx:id="phoneNumberAlertLabel" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <CheckBox mnemonicParsing="false" text="CheckBox" />
+                              <CheckBox fx:id="textNotifCheckbox" mnemonicParsing="false" text="CheckBox" />
                            </children>
                         </HBox>
                         <HBox layoutX="10.0" layoutY="40.0" prefHeight="30.0" prefWidth="440.0">
@@ -237,7 +304,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <CheckBox mnemonicParsing="false" text="CheckBox" />
+                              <CheckBox fx:id="emailNotifCheckbox" mnemonicParsing="false" text="CheckBox" />
                            </children>
                         </HBox>
                         <HBox layoutX="10.0" layoutY="70.0" prefHeight="30.0" prefWidth="440.0">
@@ -267,7 +334,7 @@
                   <HBox BorderPane.alignment="CENTER">
                      <children>
                         <Button mnemonicParsing="false" onMouseClicked="#showPricePage" text="Back" />
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#showAlertsPage" text="Next" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#validateAlertPageInputs" text="Next" />
                      </children>
                   </HBox>
                </bottom>
